@@ -26,10 +26,32 @@
         <!-- /.login-logo -->
         @if ($errors->any())
             <div class="alert alert-danger">
+                <h5>Gagal</h5>
                 <ul class="m-0">
                     @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
+                        @if (strpos($error, 'do not match'))
+                            <li>Periksa kembali username dan password Anda</li>
+                        @elseif (strpos($error, 'username field is required'))
+                            <li>Username harus terisi</li>
+                        @elseif (strpos($error, 'password field is required'))
+                            <li>Password harus terisi</li>
+                        @endif
                     @endforeach
+                </ul>
+            </div>
+        @endif
+        @if (Session::get('success'))
+            <div class="alert alert-success">
+                <h5>Berhasil</h5>
+                <ul class="m-0">
+                    <li>{{ Session::get('success') }}</li>
+                </ul>
+            </div>
+        @elseif (Session::get('error'))
+            <div class="alert alert-danger">
+                <h5>Gagal</h5>
+                <ul class="m-0">
+                    <li>{{ Session::get('error') }}</li>
                 </ul>
             </div>
         @endif

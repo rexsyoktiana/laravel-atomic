@@ -9,6 +9,18 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        echo "halaman kategori";
+        $data = [
+            'title'             =>  'Master | Kategori',
+            'menu'              =>  'Master',
+            'submenu'           =>  'Kategori',
+            'breadcrumbTitle'   =>  'Kategori',
+            'breadcrumb'        =>  '<li class="breadcrumb-item active">Master</li>
+                                    <li class="breadcrumb-item">
+                                        <a href="' . route('master.kategori') . '">
+                                            Kategori
+                                        </a>
+                                    </li>',
+        ];
+        return view('master.kategori.index', $data);
     }
 }

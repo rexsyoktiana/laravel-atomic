@@ -9,6 +9,18 @@ class DompetController extends Controller
 {
     public function index()
     {
-        echo "halaman dompet";
+        $data = [
+            'title'             =>  'Master | Dompet',
+            'menu'              =>  'Master',
+            'submenu'           =>  'Dompet',
+            'breadcrumbTitle'   =>  'Dompet',
+            'breadcrumb'        =>  '<li class="breadcrumb-item active">Master</li>
+                                    <li class="breadcrumb-item">
+                                        <a href="' . route('master.dompet') . '">
+                                            Dompet
+                                        </a>
+                                    </li>',
+        ];
+        return view('master.dompet.index', $data);
     }
 }
