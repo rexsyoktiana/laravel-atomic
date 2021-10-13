@@ -23,13 +23,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="{{ route('master.dompet') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dompet</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
+                            <a href="{{ route('master.kategori') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Kategori</p>
                             </a>
@@ -46,13 +46,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="{{ route('transaksi.dompet.masuk') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dompet Masuk</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/charts/flot.html" class="nav-link">
+                            <a href="{{ route('transaksi.dompet.keluar') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dompet Keluar</p>
                             </a>
@@ -69,7 +69,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/UI/general.html" class="nav-link">
+                            <a href="{{ route('laporan.transaksi') }}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Laporan Transaksi</p>
                             </a>
