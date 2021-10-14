@@ -21,4 +21,9 @@ class Dompet extends Model
     {
         return $this->hasOne(DompetStatus::class, 'id', 'status_id');
     }
+
+    public function transaksi()
+    {
+        return $this->hasOne(Transaksi::class, 'dompet_id', 'id');
+    }
 }

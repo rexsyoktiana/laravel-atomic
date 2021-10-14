@@ -19,4 +19,9 @@ class Kategori extends Model
     {
         return $this->hasOne(KategoriStatus::class, 'id', 'status_id');
     }
+
+    public function transaksi()
+    {
+        return $this->hasOne(Transaksi::class, 'kategori_id', 'id');
+    }
 }

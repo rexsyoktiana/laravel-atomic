@@ -5,82 +5,43 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-6">
-                    <h3 class="card-title">Dompet Keluar - Status</h3>
+                    <h3 class="card-title">Dompet Keluar</h3>
                 </div>
-                <div class="col-6">
-
+                <div class="col-6 text-right">
+                    <a href="{{ route('transaksi.dompet.keluar.add') }}">
+                        <button class="btn btn-primary">Buat Baru</button>
+                    </a>
                 </div>
             </div>
         </div>
-        <!-- /.card-header -->
         <div class="card-body">
             <table id="table-data" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
+                        <th>#</th>
+                        <th>TANGGAL</th>
+                        <th>KODE</th>
+                        <th>DESKRIPSI</th>
+                        <th>KATEGORI</th>
+                        <th>NILAI</th>
+                        <th>DOMPET</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                            Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td> 4</td>
-                        <td>X</td>
-                    </tr>
-                    <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                            Explorer 5.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5</td>
-                        <td>C</td>
-                    </tr>
-                    <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                            Explorer 5.5
-                        </td>
-                        <td>Win 95+</td>
-                        <td>5.5</td>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <td>Trident</td>
-                        <td>Internet
-                            Explorer 6
-                        </td>
-                        <td>Win 98+</td>
-                        <td>6</td>
-                        <td>A</td>
-                    </tr>
-                    <tr>
-                        <td>Trident</td>
-                        <td>Internet Explorer 7</td>
-                        <td>Win XP SP2+</td>
-                        <td>7</td>
-                        <td>A</td>
-                    </tr>
+                    @foreach ($transaksi as $k => $v)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $v->tanggal }}</td>
+                            <td>{{ $v->kode }}</td>
+                            <td>{{ $v->deskripsi }}</td>
+                            <td>{{ $v->kategori->nama }}</td>
+                            <td>(+) {{ number_format($v->nilai, 0, '.', ',') }}</td>
+                            <td>{{ $v->dompet->nama }}</td>
+                        </tr>
+                    @endforeach
                 </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                    </tr>
-                </tfoot>
             </table>
         </div>
-        <!-- /.card-body -->
     </div>
 @endsection
 @section('script')

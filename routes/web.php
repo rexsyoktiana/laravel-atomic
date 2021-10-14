@@ -38,7 +38,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::group(['prefix' => 'transaksi', 'as' => 'transaksi.'], function () {
         Route::get('dompet-masuk', ['as' => 'dompet.masuk', 'uses' => DompetMasukController::class . '@index']);
+        Route::match(['get', 'post'], 'dompet-masuk/add', ['as' => 'dompet.masuk.add', 'uses' => DompetMasukController::class . '@add']);
         Route::get('dompet-keluar', ['as' => 'dompet.keluar', 'uses' => DompetKeluarController::class . '@index']);
+        Route::match(['get', 'post'], 'dompet-keluar/add', ['as' => 'dompet.keluar.add', 'uses' => DompetKeluarController::class . '@add']);
     });
 
     Route::group(['prefix' => 'laporan', 'as' => 'laporan.'], function () {

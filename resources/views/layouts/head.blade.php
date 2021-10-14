@@ -45,5 +45,9 @@
             color: #f00;
         }
 
+        .parsley-min {
+            color: #f00;
+        }
+
     </style>
 </head>
