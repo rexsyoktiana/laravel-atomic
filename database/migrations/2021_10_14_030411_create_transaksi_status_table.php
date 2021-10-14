@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateTransaksiStatusTable extends Migration
@@ -18,6 +19,22 @@ class CreateTransaksiStatusTable extends Migration
             $table->string('nama');
             $table->timestamps();
         });
+
+        DB::table('transaksi_status')->insert(
+            [
+                'nama'          => 'Masuk',
+                'created_at'    =>  date('Y-m-d H:i:s'),
+                'updated_at'    =>  date('Y-m-d H:i:s'),
+            ],
+        );
+
+        DB::table('transaksi_status')->insert(
+            [
+                'nama'          => 'Keluar',
+                'created_at'    =>  date('Y-m-d H:i:s'),
+                'updated_at'    =>  date('Y-m-d H:i:s'),
+            ]
+        );
     }
 
     /**

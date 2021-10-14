@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <button type="submit" name="print" class="btn btn-primary mr-2">Buat Laporan</button>
-                <button class="btn btn-primary">Buat ke Excel</button>
+                <button type="submit" name="excel" class="btn btn-primary">Buat ke Excel</button>
             </form>
         </div>
     </div>

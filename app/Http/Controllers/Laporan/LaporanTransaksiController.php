@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Laporan;
 
+use App\Exports\TransaksiExport;
 use App\Http\Controllers\Controller;
 use App\Models\Dompet;
 use App\Models\DompetStatus;
@@ -10,6 +11,7 @@ use App\Models\KategoriStatus;
 use App\Models\Transaksi;
 use App\Models\TransaksiStatus;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanTransaksiController extends Controller
 {
@@ -48,14 +50,6 @@ class LaporanTransaksiController extends Controller
                     $transaksiStatus = TransaksiStatus::where('nama', '=', $status)->first();
                 }
 
-                $data = [
-                    'tanggal_awal'      =>  $tanggal_awal,
-                    'tanggal_akhir'     =>  $tanggal_akhir,
-                    'status'            =>  $status,
-                    'kategori'          =>  $kategori,
-                    'dompet'            =>  $dompet,
-                ];
-
                 $transaksi = null;
                 if ($status == "Semua") {
                     $transaksi = Transaksi::whereDate('tanggal', '>=', $tanggal_awal)->whereDate('tanggal', '<=', $tanggal_akhir)->get();
@@ -79,9 +73,29 @@ class LaporanTransaksiController extends Controller
 
                 $data = [
                     'transaksi' =>  $transaksi,
-                    'tanggal'   =>  $tanggal_awal." ".$tanggal_akhir
+                    'tanggal'   =>  $tanggal_awal . " " . $tanggal_akhir
                 ];
                 return view('laporan.laporan-transaksi.result', $data);
+            }
+            if ($request->has('excel')) {
+                $request->validate(
+                    [
+                        'tanggal_awal'  =>  'required',
+                        'tanggal_akhir' =>  'required',
+                        'status'        =>  'required',
+                        'kategori'      =>  'required',
+                        'dompet'        =>  'required'
+                    ],
+                    [
+                        'tanggal_awal.required' =>  'Tanggal awal harus terisi',
+                        'tanggal_akhir.required'    =>  'Tanggal akhir harus terisi',
+                        'status.required'           =>  'Status harus terisi',
+                        'kategori.required'         =>  'Kategori harus terisi',
+                        'dompet'                    =>  'Dompet harus terisi'
+                    ]
+                );
+
+                return Excel::download(new TransaksiExport($request), 'Laporan.xlsx');
             }
         } else {
             $kategoriStatus = KategoriStatus::where('nama', '=', 'Aktif')->first();

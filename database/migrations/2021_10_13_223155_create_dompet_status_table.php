@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateDompetStatusTable extends Migration
@@ -18,6 +19,22 @@ class CreateDompetStatusTable extends Migration
             $table->string('nama');
             $table->timestamps();
         });
+
+        DB::table('dompet_status')->insert(
+            [
+                'nama'      => 'Aktif',
+                'created_at'    =>  date('Y-m-d H:i:s'),
+                'updated_at'    =>  date('Y-m-d H:i:s'),
+            ],
+        );
+
+        DB::table('dompet_status')->insert(
+            [
+                'nama'      => 'Tidak Aktif',
+                'created_at'    =>  date('Y-m-d H:i:s'),
+                'updated_at'    =>  date('Y-m-d H:i:s'),
+            ]
+        );
     }
 
     /**

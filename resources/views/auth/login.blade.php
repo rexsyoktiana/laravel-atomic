@@ -84,6 +84,13 @@
                         </div>
                     </div>
                 </form>
+                <small>
+                    <i>
+                        Test Akun:<br>
+                        username: admin<br>
+                        password: 12345678
+                    </i>
+                </small>
             </div>
         </div>
     </div>
