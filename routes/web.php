@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::group(['prefix' => 'laporan', 'as' => 'laporan.'], function () {
-        Route::get('transaksi', ['as' => 'transaksi', 'uses' => LaporanTransaksiController::class . '@index']);
+        Route::match(['get', 'post'], 'transaksi', ['as' => 'transaksi', 'uses' => LaporanTransaksiController::class . '@index']);
     });
 });
 
