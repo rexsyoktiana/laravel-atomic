@@ -9,3 +9,4 @@
 6. Run php artisan key:generate
 7. Run php artisan migrate
 8. Run php artisan serve
+9. Go to localhost:8000
