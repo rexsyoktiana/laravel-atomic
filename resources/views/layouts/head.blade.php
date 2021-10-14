@@ -29,4 +29,21 @@
     <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/summernote/summernote-bs4.min.css">
+
+    <link rel="shortcut icon" href="{{ asset('download/images/logo.png') }}" type="image/x-icon">
+
+    <style>
+        .parsley-required {
+            color: #f00;
+        }
+
+        .parsley-maxlength {
+            color: #f00;
+        }
+
+        .parsley-type {
+            color: #f00;
+        }
+
+    </style>
 </head>

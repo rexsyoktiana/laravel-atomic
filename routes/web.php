@@ -25,7 +25,11 @@ Route::get('/', function () {
 
 Route::middleware(['auth'])->group(function () {
     Route::group(['prefix' => 'master', 'as' => 'master.'], function () {
-        Route::get('dompet', ['as' => 'dompet', 'uses' => DompetController::class . '@index']);
+        Route::match(['get', 'post'], 'dompet/{status?}', ['as' => 'dompet', 'uses' => DompetController::class . '@index']);
+        Route::match(['get', 'post'], 'dompet/add', ['as' => 'dompet.add', 'uses' => DompetController::class . '@add']);
+        Route::match(['get', 'post'], 'dompet/edit/{id}', ['as' => 'dompet.edit', 'uses' => DompetController::class . '@edit']);
+        Route::get('dompet/detail/{id}', ['as' => 'dompet.detail', 'uses' => DompetController::class . '@detail']);
+
         Route::get('kategori', ['as' => 'kategori', 'uses' => KategoriController::class . '@index']);
     });
 
