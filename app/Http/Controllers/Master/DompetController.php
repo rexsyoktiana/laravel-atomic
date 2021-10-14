@@ -11,6 +11,13 @@ class DompetController extends Controller
 {
     public function index(Request $request, $id = null)
     {
+        if ($id != null) {
+            $checkDompetStatus = DompetStatus::where('id', '=', $id)->first();
+            if (empty($checkDompetStatus)) {
+                return redirect()->route('master.dompet')->with('error', 'ID Status tidak ditemukan');
+            }
+        }
+
         if ($request->method() == "POST") {
             if ($request->has('updateStatus')) {
                 $id = $request->post('id');
@@ -23,7 +30,7 @@ class DompetController extends Controller
                 }
 
                 Dompet::where('id', '=', $id)->update(['status_id' => $dompetStatus->id]);
-                return redirect()->route('master.dompet')->with('Anda berhasil mengupdate status dompet');
+                return redirect()->route('master.dompet')->with('success', 'Anda berhasil mengupdate status dompet');
             }
         } else {
             $dompet = null;
@@ -85,6 +92,7 @@ class DompetController extends Controller
                     [
                         'nama'      =>  'required|min:5|max:255',
                         'referensi' =>  'max:20',
+                        'deskripsi' =>  'max:100',
                         'status'    =>  'required'
                     ],
                     [
@@ -92,6 +100,7 @@ class DompetController extends Controller
                         'nama.min'      =>  'Karakter nama minimal :min',
                         'nama.max'      =>  'Maksimal karakter nama hanya :max',
                         'referensi.max'         =>  'Maksimal karakter referensi hanya :max',
+                        'deskripsi.max'         =>  'Maksimal karakter deskripsi hanya :max',
                         'status.required'       =>  'Status harus terisi',
                     ]
                 );
@@ -147,12 +156,20 @@ class DompetController extends Controller
 
     public function edit(Request $request, $id)
     {
+        if ($id != null) {
+            $checkDompet = Dompet::where('id', '=', $id)->first();
+            if (empty($checkDompet)) {
+                return redirect()->route('master.dompet')->with('error', 'ID Dompet tidak ditemukan');
+            }
+        }
+
         if ($request->method() == 'POST') {
             if ($request->has('edit')) {
                 $request->validate(
                     [
                         'nama'      =>  'required|min:5|max:255',
                         'referensi' =>  'max:20',
+                        'deskripsi' =>  'max:100',
                         'status'    =>  'required'
                     ],
                     [
@@ -160,6 +177,7 @@ class DompetController extends Controller
                         'nama.min'      =>  'Karakter nama minimal :min',
                         'nama.max'      =>  'Maksimal karakter nama hanya :max',
                         'referensi.max'         =>  'Maksimal karakter referensi hanya :max',
+                        'deskripsi.max'         =>  'Maksimal karakter deskripsi hanya :max',
                         'status.required'       =>  'Status harus terisi',
                     ]
                 );
@@ -216,6 +234,13 @@ class DompetController extends Controller
 
     public function detail($id)
     {
+        if ($id != null) {
+            $checkDompet = Dompet::where('id', '=', $id)->first();
+            if (empty($checkDompet)) {
+                return redirect()->route('master.dompet')->with('error', 'ID Dompet tidak ditemukan');
+            }
+        }
+        
         $data = [
             'dompetStatus'      =>  DompetStatus::all(),
             'dompet'            =>  Dompet::where('id', '=', $id)->first(),
